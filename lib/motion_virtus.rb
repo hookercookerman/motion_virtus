@@ -17,10 +17,7 @@ require "motion_virtus/support/descendants_tracker"
 require "motion_virtus/support/options"
 require "motion_virtus/support/type_lookup"
 
-
-
-
-
+require "motion_virtus/coercion"
 
 
 
