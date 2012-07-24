@@ -51,12 +51,6 @@ module Virtus
     end
 
   protected
-
-
-    def _defined_option_methods
-      @_defined_option_methods ||= []
-    end
-
     # Adds a reader/writer method for the give option name
     #
     # @return [undefined]

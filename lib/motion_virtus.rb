@@ -13,8 +13,19 @@ BubbleWrap.require('motion/hacks.rb')
 
 require "motion_virtus/support/descendants_tracker"
 
-#require "motion_virtus/support/equalizer"
+#require "motion_virtus/support/equalizer" # module subclassing does not work
 require "motion_virtus/support/options"
+require "motion_virtus/support/type_lookup"
+
+
+
+
+
+
+
+
+
+
 
 #BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do
 

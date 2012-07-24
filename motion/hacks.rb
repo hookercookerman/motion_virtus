@@ -6,6 +6,11 @@ class Array
   end
 end
 
+class Object
+  def singleton_class
+    class << self; self; end
+  end
+end
 
 module Virtus
   Undefined = Object.new.freeze
