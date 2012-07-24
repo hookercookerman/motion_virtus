@@ -2,7 +2,6 @@ module Virtus
 
   # A module that adds class and instance level options
   module Options
-
     # Returns default options hash for a given attribute class
     #
     # @example
@@ -53,19 +52,36 @@ module Virtus
 
   protected
 
+
+    def _defined_option_methods
+      @_defined_option_methods ||= []
+    end
+
     # Adds a reader/writer method for the give option name
     #
     # @return [undefined]
     #
     # @api private
     def define_option_method(option)
-      class_eval <<-RUBY, __FILE__, __LINE__ + 1
-        def self.#{option}(value = Undefined)           # def self.primitive(value = Undefined)
-          return @#{option} if value.equal?(Undefined)  #   return @primitive if value.equal?(Undefined)
-          @#{option} = value                            #   @primitive = value
-          self                                          #   self
-        end                                             # end
-      RUBY
+      #class_eval <<-RUBY, __FILE__, __LINE__ + 1
+        #def self.#{option}(value = Undefined)           # def self.primitive(value = Undefined)
+          #return @#{option} if value.equal?(Undefined)  #   return @primitive if value.equal?(Undefined)
+          #@#{option} = value                            #   @primitive = value
+          #self                                          #   self
+        #end                                             # end
+      #RUBY
+
+      @__option = option
+      self.class.class_eval do
+        def _call_defined_options_option_method(value = Undefined)
+          return instance_variable_get("@#{@__option}") if value.equal?(Undefined)
+          instance_variable_set("@#{@__option}", value)
+          self
+        end
+      end
+      self.class.class_eval do
+        alias_method :"#{option}", :_call_defined_options_option_method
+      end
     end
 
     # Sets default options

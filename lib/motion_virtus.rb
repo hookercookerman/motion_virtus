@@ -5,8 +5,16 @@ end
 require "motion_virtus/version" unless defined?(MotionVirtus::VERSION)
 
 # Supports
+module Virtus
+  Undefined = Object.new.freeze
+end
+
+BubbleWrap.require('motion/hacks.rb')
+
 require "motion_virtus/support/descendants_tracker"
 
+#require "motion_virtus/support/equalizer"
+require "motion_virtus/support/options"
 
 #BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do
 
