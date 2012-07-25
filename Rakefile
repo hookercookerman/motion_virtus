@@ -7,7 +7,7 @@ Bundler.require
 require 'bubble-wrap/test'
 
 require "motion_virtus"
-
+  
 # Bug RubyMotion 1.15
 Motion::Project::App.setup do |app|
   app.redgreen_style = :full
