@@ -9,19 +9,17 @@ module Virtus
   Undefined = Object.new.freeze
 end
 
-BubbleWrap.require('motion/hacks.rb')
+BubbleWrap.require('motion_virtus/hacks.rb')
+BubbleWrap.require('motion_virtus/support/descendants_tracker.rb')
+BubbleWrap.require('motion_virtus/support/type_lookup.rb')
+BubbleWrap.require('motion_virtus/support/options.rb')
+BubbleWrap.require('motion_virtus/coercion.rb')
 
-require "motion_virtus/support/descendants_tracker"
-
-#require "motion_virtus/support/equalizer" # module subclassing does not work
-require "motion_virtus/support/options"
-require "motion_virtus/support/type_lookup"
-
-require "motion_virtus/coercion"
-
-
-
-
+#BubbleWrap.require File.expand_path('../motion_virtus/coercion/**/*.rb', __FILE__) do
+  #['object', 'true_class'].each do |file|
+    #file("motion_virtus/coercion/#{file}.rb").depends_on('motion_virtus/coercion.rb')
+  #end
+#end
 
 
 #BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do

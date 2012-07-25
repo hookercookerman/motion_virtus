@@ -1,13 +1,33 @@
-require 'bubble-wrap/loader'
+module Virtus
 
-BubbleWrap.require('motion/**/*.rb') do
-  file("motion/coercion.rb").depends_on('motion/support/descendants_tracker.rb')
-  file("motion/coercion.rb").depends_on('motion/support/type_lookup.rb')
-  file("motion/coercion.rb").depends_on('motion/support/options.rb')
-end
+  # Coerce abstract class
+  #
+  # @abstract
+  #
+  class Coercion
+    extend DescendantsTracker
+    extend TypeLookup
+    extend Options
 
-BubbleWrap.require('motion/coercion/true_class.rb')
+    accept_options :primitive
 
-BubbleWrap.require('motion/coercion/object.rb')
+    # Return a class that matches given name
+    #
+    # Defaults to Virtus::Coercion::Object
+    #
+    # @example
+    #   Virtus::Coercion['String'] # => Virtus::Coercion::String
+    #   Virtus::Coercion[String]   # => Virtus::Coercion::String
+    #
+    # @param [String]
+    #
+    # @return [Class]
+    #
+    # @api private
+    def self.[](name)
+      determine_type(name) or Coercion::Object
+    end
 
-BubbleWrap.require('motion/coercion/time_coercions.rb')
+  end # Coerce
+end # Virtus
+

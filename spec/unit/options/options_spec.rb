@@ -19,7 +19,6 @@ describe Virtus::Options, '#options'  do
     it "should have name of 'beans' " do
       @object.options.should.equal(:name => @default_value)
     end
-
   end
 
   describe "with an option that does not have a default value" do
