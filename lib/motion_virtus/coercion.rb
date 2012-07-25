@@ -25,7 +25,7 @@ module Virtus
     #
     # @api private
     def self.[](name)
-      determine_type(name) or Coercion::Object
+      determine_type(name) or Coercion::Obj
     end
 
   end # Coerce

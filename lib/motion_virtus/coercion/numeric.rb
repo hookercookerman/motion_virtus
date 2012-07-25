@@ -2,7 +2,7 @@
   #class Coercion
 
     ## Base class for all numeric Coercion classes
-    #class Numeric < Object
+    #class Numeric < Obj
       #primitive ::Numeric
 
       ## Coerce given value to String

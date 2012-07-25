@@ -2,7 +2,7 @@ module Virtus
   class Coercion
 
     # Coerce Object values
-    class Object < Coercion
+    class Obj < Coercion
       primitive ::Object
 
       COERCION_METHOD_REGEXP = /\Ato_/.freeze

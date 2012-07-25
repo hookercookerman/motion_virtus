@@ -9,17 +9,25 @@ module Virtus
   Undefined = Object.new.freeze
 end
 
-BubbleWrap.require('motion_virtus/hacks.rb')
-BubbleWrap.require('motion_virtus/support/descendants_tracker.rb')
-BubbleWrap.require('motion_virtus/support/type_lookup.rb')
-BubbleWrap.require('motion_virtus/support/options.rb')
-BubbleWrap.require('motion_virtus/coercion.rb')
 
-#BubbleWrap.require File.expand_path('../motion_virtus/coercion/**/*.rb', __FILE__) do
-  #['object', 'true_class'].each do |file|
-    #file("motion_virtus/coercion/#{file}.rb").depends_on('motion_virtus/coercion.rb')
-  #end
-#end
+BW.require File.expand_path('../motion_virtus/hacks.rb', __FILE__)
+BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do
+
+  file("lib/motion_virtus/support/type_lookup.rb").depends_on('lib/motion_virtus/support/options.rb')
+
+  file("lib/motion_virtus/coercion.rb").depends_on ["lib/motion_virtus/support/descendants_tracker.rb", "lib/motion_virtus/support/options.rb", "lib/motion_virtus/support/type_lookup.rb" ]
+
+  file("lib/motion_virtus/coercion/object.rb").depends_on ["lib/motion_virtus/support/options.rb", 'lib/motion_virtus/coercion.rb']
+
+  ['object', 'true_class', "numeric"].each do |file|
+    file("lib/motion_virtus/coercion/#{file}.rb").depends_on('lib/motion_virtus/coercion.rb')
+  end
+
+  file("lib/motion_virtus/coercion/numeric.rb").depends_on('lib/motion_virtus/coercion/object.rb')
+  file("lib/motion_virtus/coercion/true_class.rb").depends_on('lib/motion_virtus/coercion/object.rb')
+
+end
+
 
 
 #BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do

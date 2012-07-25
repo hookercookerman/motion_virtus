@@ -64,17 +64,19 @@ module Virtus
           #self                                          #   self
         #end                                             # end
       #RUBY
-
       @__option = option
-      self.class.class_eval do
-        def _call_defined_options_option_method(value = Undefined)
+      self.class_eval do
+        def self._call_defined_options_option_method(value = Undefined)
           return instance_variable_get("@#{@__option}") if value.equal?(Undefined)
           instance_variable_set("@#{@__option}", value)
           self
         end
       end
-      self.class.class_eval do
-        alias_method :"#{option}", :_call_defined_options_option_method
+      self.class_eval do
+        @@___option = @__option
+        class << self
+          alias_method :"#{@@___option}", :_call_defined_options_option_method
+        end
       end
     end
 
