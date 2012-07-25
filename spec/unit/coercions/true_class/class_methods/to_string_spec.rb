@@ -1,7 +1,5 @@
 describe Virtus::Coercion::TrueClass, '.to_string' do
   before do
-    puts "DFGKSDFOGKOGFKDGOKFDOGKDFOGKOGSDFGOSFDKG"
-    puts Virtus::Coercion::TrueClass.primitive
     @object = Virtus::Coercion::TrueClass
     @true_class = true
   end

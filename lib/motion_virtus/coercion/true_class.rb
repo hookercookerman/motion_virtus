@@ -2,7 +2,7 @@ module Virtus
   class Coercion
 
     # Coerce true values
-    class TrueClass < Obj
+    class TrueClass < Object
       primitive ::TrueClass
 
       # Coerce given value to String

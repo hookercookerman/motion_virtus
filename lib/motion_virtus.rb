@@ -9,7 +9,6 @@ module Virtus
   Undefined = Object.new.freeze
 end
 
-
 BW.require File.expand_path('../motion_virtus/hacks.rb', __FILE__)
 BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do
 
@@ -19,12 +18,15 @@ BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do
 
   file("lib/motion_virtus/coercion/object.rb").depends_on ["lib/motion_virtus/support/options.rb", 'lib/motion_virtus/coercion.rb']
 
-  ['object', 'true_class', "numeric"].each do |file|
+  ["time", "integer", "false_class", 'true_class', "numeric", "array", "string", "symbol", "hash", "decimal", "float"].each do |file|
     file("lib/motion_virtus/coercion/#{file}.rb").depends_on('lib/motion_virtus/coercion.rb')
+    file("lib/motion_virtus/coercion/#{file}.rb").depends_on('lib/motion_virtus/coercion/object.rb')
   end
 
-  file("lib/motion_virtus/coercion/numeric.rb").depends_on('lib/motion_virtus/coercion/object.rb')
-  file("lib/motion_virtus/coercion/true_class.rb").depends_on('lib/motion_virtus/coercion/object.rb')
+  file("lib/motion_virtus/coercion/float.rb").depends_on('lib/motion_virtus/coercion/numeric.rb')
+  file("lib/motion_virtus/coercion/integer.rb").depends_on('lib/motion_virtus/coercion/numeric.rb')
+  file("lib/motion_virtus/coercion/time.rb").depends_on('lib/motion_virtus/coercion/time_coercions.rb')
+  file("lib/motion_virtus/coercion/decimal.rb").depends_on('lib/motion_virtus/coercion/numeric.rb')
 
 end
 
