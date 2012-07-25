@@ -13,20 +13,7 @@ class Object
 end
 
 module Virtus
+  # Represents an undefined parameter used by auto-generated option methods
   Undefined = Object.new.freeze
 end
 
-class DefineOptionsOptionMethod
-  attr_accessor :option
-
-  def initialize(scope, option)
-    @scope = scope
-    @option = option
-  end
-
-  def call(value)
-    return @option if value.equal?(Virtus::Undefined)
-    @option = value
-    @scope
-  end
-end

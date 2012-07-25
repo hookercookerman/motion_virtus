@@ -4,11 +4,6 @@ end
 
 require "motion_virtus/version" unless defined?(MotionVirtus::VERSION)
 
-# Supports
-module Virtus
-  Undefined = Object.new.freeze
-end
-
 BW.require File.expand_path('../motion_virtus/hacks.rb', __FILE__)
 
 BW.require File.expand_path('../motion_virtus/**/*.rb', __FILE__) do

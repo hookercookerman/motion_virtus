@@ -66,8 +66,8 @@ module Virtus
       #RUBY
       @__option = option
       self.class_eval do
-        def self._call_defined_options_option_method(value = Undefined)
-          return instance_variable_get("@#{@__option}") if value.equal?(Undefined)
+        def self._call_defined_options_option_method(value = Virtus::Undefined)
+          return instance_variable_get("@#{@__option}") if value.equal?(Virtus::Undefined)
           instance_variable_set("@#{@__option}", value)
           self
         end
